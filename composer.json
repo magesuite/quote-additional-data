@@ -1,0 +1,13 @@
+{
+    "name": "creativestyle/magesuite-quote-additional-data",
+    "description": "",
+    "type": "magento2-module",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MageSuite\\QuoteAdditionalData\\": ""
+        }
+    }
+}
