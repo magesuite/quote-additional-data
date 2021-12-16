@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MageSuite\QuoteAdditionalData\Plugin\Checkout\CustomerData\AbstractItem\AddAdditionalDataToQuoteItem">
+        <arguments>
+            <argument name="additionalDataProcessors" xsi:type="array">
+                <item name="productOriginalPrice" xsi:type="object">MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteItemAdditionalDataProcessor\ProductOriginalPrice</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="MageSuite\QuoteAdditionalData\Plugin\Checkout\CustomerData\Cart\AddAdditionalDataToQuote">
+        <arguments>
+            <argument name="additionalDataProcessors" xsi:type="array">
+                <item name="rowTotalProductPrice" xsi:type="object">MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteAdditionalDataProcessor\RowTotalProductPrice</item>
+                <item name="discountPercentage" xsi:type="object">MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteAdditionalDataProcessor\DiscountPercentage</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
