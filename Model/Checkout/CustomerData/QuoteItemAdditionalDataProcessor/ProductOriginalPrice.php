@@ -5,6 +5,11 @@ namespace MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteItemAdd
 class ProductOriginalPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteItemAdditionalDataProcessorInterface
 {
     /**
+     * @var bool
+     */
+    protected $isEnabled;
+
+    /**
      * @var \Magento\Checkout\Helper\Data
      */
     protected $checkoutHelper;
@@ -16,13 +21,21 @@ class ProductOriginalPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteIt
 
     public function __construct(
         \Magento\Checkout\Helper\Data $checkoutHelper,
-        \Magento\Tax\Block\Item\Price\Renderer $itemPriceRenderer
+        \Magento\Tax\Block\Item\Price\Renderer $itemPriceRenderer,
+        $isEnabled = true
     ) {
         $this->checkoutHelper = $checkoutHelper;
         $this->itemPriceRenderer = $itemPriceRenderer;
+
+        $this->isEnabled = $isEnabled;
     }
 
-    public function execute(\Magento\Quote\Model\Quote\Item $item, array $itemData)
+    public function isEnabled(): bool
+    {
+        return $this->isEnabled;
+    }
+
+    public function execute(\Magento\Quote\Model\Quote\Item $item, array $itemData): array
     {
         $additionalData = [];
 
@@ -39,7 +52,7 @@ class ProductOriginalPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteIt
         return $additionalData;
     }
 
-    protected function getOriginalPrice(\Magento\Catalog\Api\Data\ProductInterface $product, \Magento\Quote\Model\Quote\Item $item)
+    protected function getOriginalPrice(\Magento\Catalog\Api\Data\ProductInterface $product, \Magento\Quote\Model\Quote\Item $item): ?float
     {
         $productPrice = $this->getItemProduct($product, $item)
             ->getPriceInfo()
@@ -63,7 +76,7 @@ class ProductOriginalPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteIt
         return null;
     }
 
-    protected function getItemProduct(\Magento\Catalog\Model\Product $product, \Magento\Quote\Model\Quote\Item $item)
+    protected function getItemProduct(\Magento\Catalog\Model\Product $product, \Magento\Quote\Model\Quote\Item $item): \Magento\Catalog\Model\Product
     {
         if ($product->getTypeId() != \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
             return $product;

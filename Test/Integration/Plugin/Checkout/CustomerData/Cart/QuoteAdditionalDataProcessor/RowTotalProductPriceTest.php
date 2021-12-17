@@ -18,11 +18,17 @@ class RowTotalProductPriceTest extends \PHPUnit\Framework\TestCase
      */
     protected $cartCustomerData;
 
+    /**
+     * @var \MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteAdditionalDataProcessor\RowTotalProductPrice
+     */
+    protected $additionalDataProcessor;
+
     public function setUp(): void
     {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
 
         $this->cartCustomerData = $this->objectManager->get(\Magento\Checkout\CustomerData\Cart::class);
+        $this->additionalDataProcessor = $this->objectManager->get(\MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteAdditionalDataProcessor\RowTotalProductPrice::class);
     }
 
     /**
@@ -32,6 +38,10 @@ class RowTotalProductPriceTest extends \PHPUnit\Framework\TestCase
      */
     public function testRowTotalPriceWithoutSpecialPrice()
     {
+        if (!$this->additionalDataProcessor->isEnabled()) {
+            $this->markTestSkipped('AdditionalDataProcessor is disabled.');
+        }
+
         $expectedRowTotalProductPrice = '<span class="price">$20.00</span>';
 
         $data = $this->cartCustomerData->getSectionData();
@@ -46,6 +56,10 @@ class RowTotalProductPriceTest extends \PHPUnit\Framework\TestCase
      */
     public function testRowTotalPriceWithSpecialPrice()
     {
+        if (!$this->additionalDataProcessor->isEnabled()) {
+            $this->markTestSkipped('AdditionalDataProcessor is disabled.');
+        }
+
         $expectedRowTotalProductPrice = '<span class="price">$10.00</span>';
         $expectedRowTotalProductOriginalPrice = '<span class="price">$20.00</span>';
 

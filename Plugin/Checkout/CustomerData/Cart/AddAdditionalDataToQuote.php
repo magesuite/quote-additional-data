@@ -33,6 +33,10 @@ class AddAdditionalDataToQuote
                 continue;
             }
 
+            if (!$additionalDataProcessor->isEnabled()) {
+                continue;
+            }
+
             $result = $additionalDataProcessor->execute($result);
         }
 

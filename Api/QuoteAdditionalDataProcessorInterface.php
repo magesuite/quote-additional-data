@@ -4,5 +4,7 @@ namespace MageSuite\QuoteAdditionalData\Api;
 
 interface QuoteAdditionalDataProcessorInterface
 {
-    public function execute(array $sectionData);
+    public function isEnabled(): bool;
+
+    public function execute(array $sectionData): array;
 }

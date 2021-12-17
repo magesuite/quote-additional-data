@@ -4,7 +4,22 @@ namespace MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteAdditio
 
 class DiscountPercentage implements \MageSuite\QuoteAdditionalData\Api\QuoteAdditionalDataProcessorInterface
 {
-    public function execute(array $sectionData)
+    /**
+     * @var bool
+     */
+    protected $isEnabled;
+
+    public function __construct($isEnabled = true)
+    {
+        $this->isEnabled = $isEnabled;
+    }
+
+    public function isEnabled(): bool
+    {
+        return $this->isEnabled;
+    }
+
+    public function execute(array $sectionData): array
     {
         if (!is_array($sectionData['items'])) {
             return $sectionData;

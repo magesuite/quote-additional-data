@@ -34,6 +34,10 @@ class AddAdditionalDataToQuoteItem
                 continue;
             }
 
+            if (!$additionalDataProcessor->isEnabled()) {
+                continue;
+            }
+
             $additionalDataItems[] = $additionalDataProcessor->execute($item, $result);
         }
 
