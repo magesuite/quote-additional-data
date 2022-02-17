@@ -60,7 +60,7 @@ class ProductOriginalPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteIt
             ->getAmount()
             ->getValue();
 
-        if ($productPrice != 0 && $productPrice == number_format($item->getBasePriceInclTax(), 2)) {
+        if ($productPrice != 0 && $productPrice == $item->getBasePriceInclTax()) {
             return null;
         }
 
