@@ -4,10 +4,7 @@ namespace MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteAdditio
 
 class DiscountPercentage implements \MageSuite\QuoteAdditionalData\Api\QuoteAdditionalDataProcessorInterface
 {
-    /**
-     * @var bool
-     */
-    protected $isEnabled;
+    protected bool $isEnabled;
 
     public function __construct($isEnabled = true)
     {
@@ -31,10 +28,17 @@ class DiscountPercentage implements \MageSuite\QuoteAdditionalData\Api\QuoteAddi
                 continue;
             }
 
-            $discountPercentage = round((($item['product_original_price_value'] - $item['product_price_value']) / $item['product_original_price_value']) * 100, 0);
-            $sectionData['items'][$key]['discount_percentage'] = $discountPercentage;
+            $sectionData['items'][$key]['discount_percentage'] = $this->calculateDiscountPercentage($item);
         }
 
         return $sectionData;
+    }
+
+    public function calculateDiscountPercentage(array $itemData): int
+    {
+        $regularPrice = $itemData['product_original_price_value'];
+        $finalPrice = $itemData['product_price_value'];
+
+        return round((($regularPrice - $finalPrice) / $regularPrice) * 100);
     }
 }

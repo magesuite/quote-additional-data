@@ -4,15 +4,9 @@ namespace MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteAdditio
 
 class RowTotalProductPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteAdditionalDataProcessorInterface
 {
-    /**
-     * @var bool
-     */
-    protected $isEnabled;
+    protected bool $isEnabled;
 
-    /**
-     * @var \Magento\Checkout\Helper\Data
-     */
-    protected $checkoutHelper;
+    protected \Magento\Checkout\Helper\Data $checkoutHelper;
 
     public function __construct(
         \Magento\Checkout\Helper\Data $checkoutHelper,
