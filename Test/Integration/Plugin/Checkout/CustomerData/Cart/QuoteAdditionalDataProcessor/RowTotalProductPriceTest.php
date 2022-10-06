@@ -3,25 +3,17 @@
 namespace MageSuite\QuoteAdditionalData\Test\Integration\Model\Checkout\CustomerData\QuoteAdditionalDataProcessor;
 
 /**
+ * @magentoAppArea frontend
  * @magentoDbIsolation enabled
  * @magentoAppIsolation enabled
  */
 class RowTotalProductPriceTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var \Magento\TestFramework\ObjectManager
-     */
-    protected $objectManager;
+    protected ?\Magento\TestFramework\ObjectManager $objectManager;
 
-    /**
-     * @var \Magento\Checkout\CustomerData\Cart
-     */
-    protected $cartCustomerData;
+    protected ?\Magento\Checkout\CustomerData\Cart $cartCustomerData;
 
-    /**
-     * @var \MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteAdditionalDataProcessor\RowTotalProductPrice
-     */
-    protected $additionalDataProcessor;
+    protected ?\MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteAdditionalDataProcessor\RowTotalProductPrice $additionalDataProcessor;
 
     public function setUp(): void
     {
@@ -32,7 +24,6 @@ class RowTotalProductPriceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @magentoAppArea frontend
      * @magentoConfigFixture default/quote_additional_data/general/is_enabled 1
      * @magentoDataFixture MageSuite_QuoteAdditionalData::Test/Integration/_files/quote_with_product.php
      */
@@ -50,7 +41,6 @@ class RowTotalProductPriceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @magentoAppArea frontend
      * @magentoConfigFixture default/quote_additional_data/general/is_enabled 1
      * @magentoDataFixture MageSuite_QuoteAdditionalData::Test/Integration/_files/quote_with_special_price_product.php
      */

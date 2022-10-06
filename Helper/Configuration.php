@@ -6,10 +6,7 @@ class Configuration
 {
     const XML_PATH_QUOTE_ADDITIONAL_DATA_IS_ENABLED = 'quote_additional_data/general/is_enabled';
 
-    /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
-     */
-    protected $scopeConfig;
+    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
 
     public function __construct(\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface)
     {

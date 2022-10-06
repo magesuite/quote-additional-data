@@ -4,20 +4,11 @@ namespace MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteItemAdd
 
 class ProductOriginalPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteItemAdditionalDataProcessorInterface
 {
-    /**
-     * @var bool
-     */
-    protected $isEnabled;
+    protected bool $isEnabled;
 
-    /**
-     * @var \Magento\Checkout\Helper\Data
-     */
-    protected $checkoutHelper;
+    protected \Magento\Checkout\Helper\Data $checkoutHelper;
 
-    /**
-     * @var \Magento\Tax\Block\Item\Price\Renderer
-     */
-    protected $itemPriceRenderer;
+    protected \Magento\Tax\Block\Item\Price\Renderer $itemPriceRenderer;
 
     public function __construct(
         \Magento\Checkout\Helper\Data $checkoutHelper,

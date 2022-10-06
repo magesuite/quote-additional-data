@@ -4,15 +4,9 @@ namespace MageSuite\QuoteAdditionalData\Plugin\Checkout\CustomerData\AbstractIte
 
 class AddAdditionalDataToQuoteItem
 {
-    /**
-     * @var \MageSuite\QuoteAdditionalData\Helper\Configuration
-     */
-    protected $configuration;
+    protected \MageSuite\QuoteAdditionalData\Helper\Configuration $configuration;
 
-    /**
-     * @var array
-     */
-    protected $additionalDataProcessors;
+    protected array $additionalDataProcessors;
 
     public function __construct(
         \MageSuite\QuoteAdditionalData\Helper\Configuration $configuration,
