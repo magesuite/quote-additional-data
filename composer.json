@@ -1,7 +1,8 @@
 {
     "name": "creativestyle/magesuite-quote-additional-data",
-    "description": "",
+    "description": "This module adds additional data to CustomerData. This data can be used by frontend developers to customize the mini-cart or checkout summary products",
     "type": "magento2-module",
+    "license": "GPL-3.0",
     "autoload": {
         "files": [
             "registration.php"
