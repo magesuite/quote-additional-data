@@ -1,6 +1,6 @@
 <?php
 
-namespace MageSuite\QuoteAdditionalData\Test\Integration\Model\Checkout\CustomerData\QuoteAdditionalDataProcessor;
+namespace MageSuite\QuoteAdditionalData\Test\Integration\Model\Checkout\CustomerData\Cart\QuoteAdditionalDataProcessor;
 
 /**
  * @magentoAppArea frontend
