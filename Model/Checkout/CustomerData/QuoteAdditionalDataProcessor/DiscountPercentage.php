@@ -23,7 +23,7 @@ class DiscountPercentage implements \MageSuite\QuoteAdditionalData\Api\QuoteAddi
         }
 
         foreach ($sectionData['items'] as $key => $item) {
-            if (empty($item['product_original_price_value'] || $item['product_original_price_value'] == $item['product_price_value'])) {
+            if (empty($item['product_original_price_value']) || $item['product_original_price_value'] == $item['product_price_value']) {
                 $sectionData['items'][$key]['discount_percentage'] = null;
                 continue;
             }
