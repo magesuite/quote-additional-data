@@ -4,10 +4,11 @@ namespace MageSuite\QuoteAdditionalData\Model\Checkout\CustomerData\QuoteItemAdd
 
 class ProductOriginalPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteItemAdditionalDataProcessorInterface
 {
+    public const EPSILON = 0.0000001;
+
     protected bool $isEnabled;
 
     protected \Magento\Checkout\Helper\Data $checkoutHelper;
-
     protected \Magento\Tax\Block\Item\Price\Renderer $itemPriceRenderer;
 
     public function __construct(
@@ -51,7 +52,7 @@ class ProductOriginalPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteIt
             ->getAmount()
             ->getValue();
 
-        if ($productPrice != 0 && $productPrice == $item->getBasePriceInclTax()) {
+        if ($productPrice != 0 && $this->numbersAreTheSame((float)$productPrice, (float)$item->getBasePriceInclTax())) {
             return null;
         }
 
@@ -76,5 +77,10 @@ class ProductOriginalPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteIt
         $itemChild = current($item->getChildren());
 
         return $itemChild->getProduct();
+    }
+
+    protected function numbersAreTheSame(float $firstNumber, float $secondNumber): bool
+    {
+        return abs($firstNumber - $secondNumber) < self::EPSILON;
     }
 }
