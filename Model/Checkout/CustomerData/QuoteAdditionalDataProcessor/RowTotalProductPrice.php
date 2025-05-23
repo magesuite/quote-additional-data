@@ -33,7 +33,7 @@ class RowTotalProductPrice implements \MageSuite\QuoteAdditionalData\Api\QuoteAd
             $sectionData['items'][$key]['row_total_product_price_value'] = $rowTotalProductPriceValue;
             $sectionData['items'][$key]['row_total_product_price'] = $this->checkoutHelper->formatPrice($rowTotalProductPriceValue);
 
-            $rowTotalProductOriginalPriceValue = $item['product_original_price_value'] ? (float)$item['product_original_price_value'] * (float)$item['qty'] : null;
+            $rowTotalProductOriginalPriceValue = $item['product_original_price_value'] && (float)$item['product_price_value'] < (float)$item['product_original_price_value'] ? (float)$item['product_original_price_value'] * (float)$item['qty'] : null;
             $sectionData['items'][$key]['row_total_product_original_price'] = $rowTotalProductOriginalPriceValue ? $this->checkoutHelper->formatPrice($rowTotalProductOriginalPriceValue) : null;
             $sectionData['items'][$key]['row_total_product_original_price_value'] = $rowTotalProductOriginalPriceValue;
         }
